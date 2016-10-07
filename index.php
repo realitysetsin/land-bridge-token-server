@@ -162,7 +162,17 @@ $app->get('/user/{guid}', function (Request $request) {
         ]
     ]);
 
-    echo '<pre>'; print_r($response['Items']); echo '</pre>';
+    $response_items = $response['Items'][0];
+
+    $data = [
+        "guid" => $response_items['guid']['S'],
+        "fullname" => $response_items['fullname']['S'],
+        "available" => $response_items['available']['S'],
+        "starrating" => $response_items['starrating']['S'],
+        "issubscriber" => $response_items['issubscriber']['S'],
+    ];
+
+    echo json_encode($data);
 
 });
 
