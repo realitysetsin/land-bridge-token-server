@@ -75,7 +75,7 @@ $app->post('/user', function (Request $request, Response $response) {
 
 $app->get('/user', function (Request $request, Response $response) {
 
-    $credentials= new Credentials(getenv('AccessKeyId'), getenv('AccessKeyId'));
+    $credentials= new Credentials('AKIAJ6R6GJPF6PPTONQQ', 'igtjFeofQGcriOGveUMA1DOHRCJ2gs4WDUu4//j6');
 
     $sdk = new Aws\Sdk([
         'region'   => 'us-west-2', // US West (Oregon) Region
@@ -96,7 +96,7 @@ $app->get('/user', function (Request $request, Response $response) {
 
 $app->put('/user', function (Request $request, Response $response) {
 
-    $credentials= new Credentials(getenv('AccessKeyId'), getenv('AccessKeyId'));
+    $credentials= new Credentials('AKIAJ6R6GJPF6PPTONQQ', 'igtjFeofQGcriOGveUMA1DOHRCJ2gs4WDUu4//j6');
 
     $sdk = new Aws\Sdk([
         'region'   => 'us-west-2', // US West (Oregon) Region
