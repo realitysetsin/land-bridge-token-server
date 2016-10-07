@@ -56,4 +56,16 @@ $app->post('/idm', function (Request $request, Response $response) {
 
     return $response;
 });
+$app->post('/user', function (Request $request, Response $response) {
+    $client = new GuzzleHttp\Client();
+    $res = $client->post(
+        'https://iupvv9x848.execute-api.us-west-2.amazonaws.com/test/registertrainer', [
+            'body' => $request->getBody(),
+            'verify' =>false,
+    ]);
+
+    $response->getBody()->write($res->getBody());
+
+    return $response;
+});
 $app->run();
