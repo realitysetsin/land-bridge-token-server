@@ -104,17 +104,19 @@ $app->put('/user', function (Request $request, Response $response) {
         'credentials' => $credentials
     ]);
 
+    $parsed_body = $request->getParsedBody();
+
     // Create a new DynamoDB client
     $dynamodb = $sdk->createDynamoDb();
 
     $response2 = $dynamodb->putItem([
         'TableName' => 'trainer',
         'Item' => [
-            'guid'          => ['S'      => '098877655432'      ], // Primary Key
-            'fullname'      => ['S'      => 'BooMMMMMM' ],
-            'available'     => ['S'      => 'nO' ],
-            'starrating'    => ['S'      => '1' ],
-            'issubscriber'  => ['S'      => 'true']
+            'guid'          => ['S'      => $parsed_body['guid']      ], // Primary Key
+            'fullname'      => ['S'      => $parsed_body['fullname'],
+            'available'     => ['S'      => $parsed_body['available'] ],
+            'starrating'    => ['S'      => $parsed_body['starrating'] ],
+            'issubscriber'  => ['S'      => $parsed_body['issubscriber']]
         ]
     ]);
 
@@ -131,9 +133,6 @@ $app->get('/user/{guid}', function (Request $request) {
         'version'  => 'latest',  // Use the latest version of the AWS SDK for PHP
         'credentials' => $credentials
     ]);
-
-//
-//    print_r($guid);
 
     // Create a new DynamoDB client
     $dynamodb = $sdk->createDynamoDb();
