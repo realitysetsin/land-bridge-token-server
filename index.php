@@ -113,10 +113,10 @@ $app->put('/user', function (Request $request, Response $response) {
         'TableName' => 'trainer',
         'Item' => [
             'guid'          => ['S'      => $parsed_body['guid']      ], // Primary Key
-            'fullname'      => ['S'      => $parsed_body['fullname'],
+            'fullname'      => ['S'      => $parsed_body['fullname'] ],
             'available'     => ['S'      => $parsed_body['available'] ],
             'starrating'    => ['S'      => $parsed_body['starrating'] ],
-            'issubscriber'  => ['S'      => $parsed_body['issubscriber']]
+            'issubscriber'  => ['S'      => $parsed_body['issubscriber'] ]
         ]
     ]);
 
@@ -148,8 +148,6 @@ $app->get('/user/{guid}', function (Request $request) {
             ':v_guid' => ['S' => $guid]
         ]
     ]);
-
-
 
     print_r($response['Items']);
 
