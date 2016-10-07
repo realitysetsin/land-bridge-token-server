@@ -90,7 +90,20 @@ $app->get('/user', function (Request $request, Response $response) {
         'TableName' => 'trainer'
     ));
 
-    echo json_encode($scan_response['Items']);
+    $data = array();
+
+    foreach ($scan_response['Items'] as $key => $value) {
+        $record = array(
+            "guid" => $value['guid']['S'],
+            "fullname" => $value['fullname']['S'],
+            "available" => $value['available']['S'],
+            "starrating" => $value['starrating']['S'],
+            "issubscriber" => $value['issubscriber']['S'],
+        );
+        $data[] = $record;
+    }
+
+    print_r($data);
 
 });
 
@@ -149,7 +162,7 @@ $app->get('/user/{guid}', function (Request $request) {
         ]
     ]);
 
-    print_r($response['Items']);
+    echo '<pre>'; print_r($response['Items']); echo '</pre>';
 
 });
 
