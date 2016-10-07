@@ -103,7 +103,7 @@ $app->get('/user', function (Request $request, Response $response) {
         $data[] = $record;
     }
 
-    print_r($data);
+    echo json_encode($data);
 
 });
 
