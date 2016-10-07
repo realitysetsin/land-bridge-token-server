@@ -122,4 +122,38 @@ $app->put('/user', function (Request $request, Response $response) {
 
 });
 
+$app->get('/user/{guid}', function (Request $request) {
+
+    $credentials= new Credentials(getenv('AccessKeyId'), getenv('AccessSecretKey'));
+
+    $sdk = new Aws\Sdk([
+        'region'   => 'us-west-2', // US West (Oregon d) Region
+        'version'  => 'latest',  // Use the latest version of the AWS SDK for PHP
+        'credentials' => $credentials
+    ]);
+
+//
+//    print_r($guid);
+
+    // Create a new DynamoDB client
+    $dynamodb = $sdk->createDynamoDb();
+
+    $route = $request->getAttribute('route');
+    $guid = $route->getArgument('guid');
+
+
+    $response = $dynamodb->query([
+        'TableName' => 'trainer',
+        'KeyConditionExpression' => 'guid = :v_guid',
+        'ExpressionAttributeValues' =>  [
+            ':v_guid' => ['S' => $guid]
+        ]
+    ]);
+
+
+
+    print_r($response['Items']);
+
+});
+
 $app->run();
