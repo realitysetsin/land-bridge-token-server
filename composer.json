@@ -1,0 +1,15 @@
+{
+    "name": "cbrooks/land-bridge-token-server",
+    "description": "Serves up a Twilio token.",
+    "authors": [
+        {
+            "name": "Cameron Brooks",
+            "email": "cameron@realitysetsin.com"
+        }
+    ],
+    "require": {
+        "twilio/sdk": "~5.4",
+        "slim/slim": "^3.0",
+        "guzzlehttp/guzzle": "~6.0"
+    }
+}
